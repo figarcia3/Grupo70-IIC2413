@@ -8,7 +8,7 @@
 
 	$nombre = $_POST["nombre_naviera"];
 
- 	$query = "SELECT * FROM buques,pertenece_a,navieras WHERE navieras.nid = pertenece_a.nid AND buques.bid = pertenece_a.bid;";
+ 	$query = "SELECT * FROM buques,pertenece_a,navieras WHERE navieras.nombre LIKE '%$nombre%' AND navieras.nid = pertenece_a.nid AND buques.bid = pertenece_a.bid;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$buques = $result -> fetchAll();
@@ -22,7 +22,7 @@
     </tr>
   <?php
 	foreach ($buques as $buque) {
-  		echo "<tr> <td>$buque[0]</td> <td>$buque[1]</td> <td>$buque[2]</td> <td>$buque[3]</td>  <td>$buque[4]</td>  <td>$buque[5]</td> </tr>";
+  		echo "<tr> <td>$buque[0]</td> <td>$buque[1]</td> <td>$buque[2]</td> </tr>";
 	}
   ?>
 	</table>
