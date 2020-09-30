@@ -30,10 +30,10 @@
   <br>
   <br>
 
-  <h3 align="center"> ¿Quieres buscar un Buque que haya atracado en algun año en cierta ciudad?</h3>
+  <h3 align="center"> ¿Quieres buscar un Buque que haya atracado en algun año en cierta puerto?</h3>
 
 <form align="center" action="consultas/consulta_3.php" method="post">
-  Nombre Ciudad:
+  Nombre Puerto:
   <input type="text" name="nombre_puerto">
   <br/><br/>
   Año atraque:
@@ -46,14 +46,27 @@
 <br>
 <br>
 
-<h3 align="center"> ¿Quieres buscar un Buque que haya atracado en una ciudad al mismo tiempo que otro?</h3>
+<h3 align="center"> ¿Quieres buscar un Buque que haya atracado en una puerto al mismo tiempo que otro?</h3>
 
 <form align="center" action="consultas/consulta_4.php" method="post">
-  Nombre Ciudad:
+  Nombre Puerto:
   <input type="text" name="nombre_puerto">
   <br/><br/>
   Nombre Buque:
   <input type="text" name="nombre_buque">
+  <br/><br/>
+  <input type="submit" value="Buscar">
+</form>
+
+<br>
+<br>
+<br>
+
+<h3 align="center"> ¿Todas las capitanas que hayan pasado por cierto puerto?</h3>
+
+<form align="center" action="consultas/consulta_5.php" method="post">
+  Nombre Puerto:
+  <input type="text" name="nombre_puerto">
   <br/><br/>
   <input type="submit" value="Buscar">
 </form>
