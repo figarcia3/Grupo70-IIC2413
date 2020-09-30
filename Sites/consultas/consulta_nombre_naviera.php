@@ -14,7 +14,7 @@
 	$buques = $result -> fetchAll();
   ?>
 
-<?php $nombre hola que tal ?>
+<?php $nombre ?>
 
 
 	<table>
