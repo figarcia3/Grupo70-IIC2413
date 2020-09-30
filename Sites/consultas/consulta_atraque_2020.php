@@ -10,7 +10,7 @@
  	$query = "SELECT * FROM buques,itinerarios,puertos WHERE puertos.nombre_puerto LIKE '%$nombre%' AND itinerarios.pid=puertos.pid AND YEAR(itinerarios.fecha_atraque)=2020 and itinerarios.bid=buques.bid;";
 	$result = $db -> prepare($query);
 	$result -> execute();
-	$pokemones = $result -> fetchAll();
+	$buques = $result -> fetchAll();
   ?>
 
 	<table>
