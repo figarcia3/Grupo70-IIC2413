@@ -22,7 +22,7 @@
     </tr>
   <?php
 	foreach ($buques as $buque) {
-  		echo "<tr> <td>$buque[0]</td> <td>$buque[1]</td> <td>$buque[2]</td> </tr>";
+  		echo "<tr> <td>$buque[0]</td> <td>$buque[1]</td> <td>$buque[2]</td> <td>$buque[3]</td>  <td>$buque[4]</td>  <td>$buque[5]</td> </tr>";
 	}
   ?>
 	</table>
