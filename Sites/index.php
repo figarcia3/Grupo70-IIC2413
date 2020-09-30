@@ -1,9 +1,20 @@
 <?php include('templates/header.html');   ?>
 
 <body>
-  <h1 align="center">Biblioteca Pokemón </h1>
-  <p style="text-align:center;">Aquí podrás encontrar información sobre pokemones.</p>
+  <h1 align="center">Biblioteca Maritima </h1>
+  <p style="text-align:center;">Aquí podrás encontrar información sobre Navieras, Buques, Marineras y Marineros y más.</p>
 
+  <br>
+  
+  <h3 align="center">¿Quieres ver todas las Navieras?</h3>
+  <form align="center" action="/consultas/consulta_mostrar_navieras.php" method="post">
+    <br><br>
+    <input type="submit" value="Mostrar Navieras">
+  </form>
+
+  <br>
+  <br>
+  <br>
   <br>
 
   <h3 align="center"> ¿Quieres buscar un Pokemón por tipo y/o nombre?</h3>
@@ -47,17 +58,5 @@
   <br>
   <br>
 
-  <h3 align="center">¿Quieres ver todas las Navieras?</h3>
-
-
-  <form align="center" action="consultas/consulta_tipo.php" method="post">
-    <br><br>
-    <input type="submit" value="Mostrar Navieras">
-  </form>
-
-  <br>
-  <br>
-  <br>
-  <br>
 </body>
 </html>
