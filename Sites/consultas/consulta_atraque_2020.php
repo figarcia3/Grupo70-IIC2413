@@ -5,12 +5,12 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-    $nombre = $_POST["nombre_puerto"];
+  $nombre = $_POST["nombre_puerto"];
 
-    $query = "SELECT * FROM buques,itinerarios,puertos WHERE itinerarios.pid=puertos.pid AND itinerarios.bid=buques.bid;";
-    $result = $db -> prepare($query);
-    $result -> execute();
-    $buques = $result -> fetchAll();
+ 	$query = "SELECT * FROM buques,itinerarios,puertos WHERE itinerarios.pid=puertos.pid AND YEAR(itinerarios.fecha_atraque)=2020 AND itinerarios.bid=buques.bid;";
+   $result = $db -> prepare($query);
+	$result -> execute();
+	$buques = $result -> fetchAll();
   ?>
 
 	<table>
