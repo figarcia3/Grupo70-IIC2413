@@ -36,6 +36,9 @@
     Nombre:
     <input type="text" name="nombre_puerto">
     <br/><br/>
+    Año:
+    <input type="text" name="atraque">
+    <br/><br/>
     <input type="submit" value="Buscar">
   </form>
   
