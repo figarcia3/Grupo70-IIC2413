@@ -16,7 +16,8 @@
               AND LOWER(B1.nombre) LIKE LOWER('%$nombre_buque%') 
               AND I1.bid = B1.bid;
 
-              SELECT * FROM puertos AS P, itinerarios AS I2, buques AS B2, in_MM AS MM 
+              SELECT buques.bid, buques.patente, buques.nombre, buques.origen
+              FROM puertos AS P, itinerarios AS I2, buques AS B2, in_MM AS MM 
               WHERE LOWER(P.nombre_puerto) LIKE LOWER('%$nombre_puerto%') 
               AND I2.pid = P.pid 
               AND B2.bid = I2.bid 

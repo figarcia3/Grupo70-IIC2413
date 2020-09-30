@@ -14,7 +14,7 @@
               AND itinerarios.pid = puertos.pid 
               AND buques.bid=itinerarios.bid;
 
-              SELECT personas.pid,personas.edad,personas.genero,personas.nombre,personas.Nacionalidad,personas.pasaporte 
+              SELECT personas.pid,personas.edad,personas.nombre,personas.Nacionalidad,personas.pasaporte 
               FROM personas, capitan_en, buquestalcahuano AS bt 
               WHERE personas.genero= ’mujer’ 
               AND personas.pid = capitan_en.pid 
@@ -28,7 +28,7 @@
 	<table>
     <tr>
       <th>ID</th>
-      <th>nombtr</th>
+      <th>nombre</th>
       <th>nacionalidad</th>
       <th>pasaporte</th>
       <th>edad</th>
