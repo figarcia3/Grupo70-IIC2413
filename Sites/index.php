@@ -75,17 +75,5 @@
 <br>
 <br>
 
-  <h3 align="center"> ¿Quieres conocer los Pokemones más altos que: ?</h3>
-
-  <form align="center" action="consultas/consulta_altura.php" method="post">
-    Altura Mínima:
-    <input type="text" name="altura">
-    <br/><br/>
-    <input type="submit" value="Buscar">
-  </form>
-  <br>
-  <br>
-  <br>
-
 </body>
 </html>
