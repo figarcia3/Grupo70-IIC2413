@@ -7,7 +7,7 @@
 
   $nombre = $_POST["nombre_puerto"];
 
- 	$query = "SELECT * FROM buques,itinerarios,puertos WHERE puertos.nombre_puerto LIKE LOWER('%$nombre%') AND itinerarios.pid=puertos.pid AND EXTRACT(YEAR FROM fecha_atraque) = 2020 AND itinerarios.bid=buques.bid;";
+ 	$query = "SELECT * FROM buques,itinerarios,puertos WHERE LOWER(puertos.nombre_puerto) LIKE LOWER('%$nombre%') AND itinerarios.pid=puertos.pid AND EXTRACT(YEAR FROM fecha_atraque) = 2020 AND itinerarios.bid=buques.bid;";
    $result = $db -> prepare($query);
 	$result -> execute();
 	$buques = $result -> fetchAll();
