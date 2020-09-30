@@ -30,11 +30,11 @@
   <br>
   <br>
 
-  <h3 align="center"> ¿Quieres buscar un Pokemón por su ID?</h3>
+  <h3 align="center"> ¿Quieres buscar un Buque que haya atracado en una cierta ciudad el 2020?</h3>
 
   <form align="center" action="consultas/consulta_stats.php" method="post">
     Id:
-    <input type="text" name="id_elegido">
+    <input type="text" name="nombre_puerto">
     <br/><br/>
     <input type="submit" value="Buscar">
   </form>

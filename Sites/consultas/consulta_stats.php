@@ -5,9 +5,9 @@
   #Llama a conexión, crea el objeto PDO y obtiene la variable $db
   require("../config/conexion.php");
 
-  $id_nuevo = $_POST["id_elegido"];
+  $nombre = $_POST["nombre_puerto"];
 
- 	$query = "SELECT * FROM pokemones where pid = $id_nuevo;";
+ 	$query = "SELECT * FROM buques,itinerarios,puertos WHERE puertos.nombre_puerto LIKE '%$nombre%' AND itinerarios.pid=puertos.pid AND YEAR(itinerarios.fecha_atraque)=2020 and itinerarios.bid=buques.bid;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$pokemones = $result -> fetchAll();
