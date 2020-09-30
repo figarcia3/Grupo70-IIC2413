@@ -8,7 +8,7 @@
   $nombre = $_POST["nombre_puerto"];
 
  	$query = "SELECT * FROM buques,itinerarios,puertos WHERE puertos.nombre_puerto LIKE '%$nombre%' AND itinerarios.pid=puertos.pid AND YEAR(itinerarios.fecha_atraque)=2020 AND itinerarios.bid=buques.bid;";
-	$result = $db -> prepare($query);
+   $result = $db -> prepare($query);
 	$result -> execute();
 	$buques = $result -> fetchAll();
   ?>

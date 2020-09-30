@@ -17,7 +17,7 @@
   <br>
   <br>
 
-  <h3 align="center"> ¿Quieres buscar un Buque por tipo y/o nombre de Naviera?</h3>
+  <h3 align="center"> ¿Quieres buscar un Buque por nombre de Naviera?</h3>
 
   <form align="center" action="consultas/consulta_nombre_naviera.php" method="post">
     Nombre:
@@ -33,7 +33,7 @@
   <h3 align="center"> ¿Quieres buscar un Buque que haya atracado en una cierta ciudad el 2020?</h3>
 
   <form align="center" action="consultas/consulta_atraque_2020.php" method="post">
-    Id:
+    Nombre:
     <input type="text" name="nombre_puerto">
     <br/><br/>
     <input type="submit" value="Buscar">
