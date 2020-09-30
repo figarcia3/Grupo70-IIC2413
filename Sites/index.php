@@ -7,7 +7,7 @@
   <br>
   
   <h3 align="center">¿Quieres ver todas las Navieras?</h3>
-  <form align="center" action="/consultas/consulta_mostrar_navieras.php" method="post">
+  <form align="center" action="consultas/consulta_mostrar_navieras.php" method="post">
     <br><br>
     <input type="submit" value="Mostrar Navieras">
   </form>
@@ -19,7 +19,7 @@
 
   <h3 align="center"> ¿Quieres buscar un Buque por tipo y/o nombre de Naviera?</h3>
 
-  <form align="center" action="/consultas/consulta_nombre_naviera.php" method="post">
+  <form align="center" action="consultas/consulta_nombre_naviera.php" method="post">
     Nombre:
     <input type="text" name="nombre_naviera">
     <br/><br/>
