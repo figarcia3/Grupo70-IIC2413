@@ -8,7 +8,9 @@
 
 	$nombre = $_POST["nombre_naviera"];
 
- 	$query = "SELECT * FROM buques,pertenece_a,navieras WHERE navieras.nombre='%$nombre%' AND navieras.nid = pertenece_a.nid AND buques.bid = pertenece_a.bid;";
+	$nombre hola que tal
+
+ 	$query = "SELECT * FROM buques,pertenece_a,navieras WHERE navieras.nombre LIKE '%$nombre%' AND navieras.nid = pertenece_a.nid AND buques.bid = pertenece_a.bid;";
 	$result = $db -> prepare($query);
 	$result -> execute();
 	$buques = $result -> fetchAll();
