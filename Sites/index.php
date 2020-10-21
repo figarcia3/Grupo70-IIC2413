@@ -2,7 +2,6 @@
 
 <body>
 
-
 <?php include('home.php');   ?>
 
 </body>
