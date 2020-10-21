@@ -15,7 +15,7 @@ $result = $db -> prepare($query);
 $result -> execute();
 $result = $result -> fetchAll();
 
-$num = pg_num_rows($result);
+$num = $result -> num_rows();
 
 if ($num == 0){
     echo "Hola q tal";
