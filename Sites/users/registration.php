@@ -13,7 +13,8 @@ $result -> execute();
 $num = pg_num_rows($result);
 
 if ($num == 0){
-    echo "Entro en el 0 " .$num.;
+    echo "Entro en el 0 ";
+    echo $num;
 }else{ 
     echo "No entro";
 }
