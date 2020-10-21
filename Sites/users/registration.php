@@ -10,7 +10,9 @@ $query = "SELECT COUNT(*) FROM users WHERE pasaporte = '$pasaporte';";
 $result = $db -> prepare($query);
 $result -> execute();
 
-if ($result == 0){
+$num = pg_num_rows($result);
+
+if ($num == 0){
     echo "Entro en el 0 ";
 }else{ 
     echo "No entro";
