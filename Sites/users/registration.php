@@ -21,7 +21,7 @@ if ($num == 0){
     $query_max  = "SELECT MAX(user_id) FROM users;";
     $result_max = $db -> prepare($query_max);
     $result_max -> execute();
-    $result_max = $result_max -> getAttribute();
+    $result_max = getAttribute($result_max);
     $result_max = $result_max + 1;
     $reg = "INSERT INTO users($result_max, '$pasaporte', '$password', '$nombre', '$nacionalidad', '$sexo', $edad);";
 
