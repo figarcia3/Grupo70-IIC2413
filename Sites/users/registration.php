@@ -14,7 +14,7 @@ $query = "SELECT * FROM users WHERE pasaporte = '$pasaporte';";
 $result = $db -> prepare($query);
 $result -> execute();
 
-$num = $result -> num_rows();
+$num = $result -> rowCount();
 
 if ($num == 0){
     echo "Hola q tal";
