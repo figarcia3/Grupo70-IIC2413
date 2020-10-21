@@ -75,5 +75,7 @@
 <br>
 <br>
 
+<?php include('home.php');   ?>
+
 </body>
 </html>
