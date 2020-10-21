@@ -26,7 +26,8 @@ if ($num == 0){
     $reg = "INSERT INTO users($result_max, '$pasaporte', '$password', '$nombre', '$nacionalidad', '$sexo', $edad);";
 
     $result_reg = $db -> prepare($reg);
-    $result0 -> execute();
+    $result_reg -> execute();
+    echo "El pasaporte fue registrado con exito";
 
 }else{ 
     echo "El pasaporte ya fue registrado";
