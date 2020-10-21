@@ -18,7 +18,7 @@ $result = $result -> fetchAll();
 $num = pg_num_rows($result);
 
 if ($num == 0){
-    echo "Hola q tal"
+    echo "Hola q tal";
     #$query_max  = "SELECT MAX(user_id) FROM users;";
     #$result_max = $db -> prepare($query_max);
     #$result_max -> execute();
