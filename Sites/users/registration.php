@@ -18,12 +18,16 @@ $num = $result -> rowCount();
 
 if ($num == 0){
     echo "Hola q tal";
-    #$query_max  = "SELECT MAX(user_id) FROM users;";
-    #$result_max = $db -> prepare($query_max);
-    #$result_max -> execute();
-    #$result_max = $result_maxult -> fetchAll();
+    $query_max  = "SELECT MAX(user_id) FROM users;";
+    $result_max = $db -> prepare($query_max);
+    $result_max -> execute();
+    $result_max = $result_max -> getAttribute();
+    $result_max = $result_max + 1;
+    $reg = "INSERT INTO users($result_max, '$pasaporte', '$password', '$nombre', '$nacionalidad', '$sexo', $edad);";
 
-    #$reg = "INSERT INTO users ()"
+    $result_reg = $db -> prepare($reg);
+    $result0 -> execute();
+
 }else{ 
     echo "El pasaporte ya fue registrado";
 }
