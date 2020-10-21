@@ -13,7 +13,6 @@ $query = "SELECT * FROM users WHERE pasaporte = '$pasaporte';";
 
 $result = $db -> prepare($query);
 $result -> execute();
-$result = $result -> fetchAll();
 
 $num = $result -> num_rows();
 
