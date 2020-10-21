@@ -11,9 +11,9 @@ $result = $db -> prepare($query);
 $result -> execute();
 
 if ($result == 0){
-    echo $result "Entro en el 0";
+    echo "Entro en el 0 ";
 }else{ 
-    echo $result;
+    echo "No entro";
 }
 
 ?>
