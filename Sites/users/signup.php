@@ -1,10 +1,7 @@
-
 <?php
-
+    session_start();
     require("../config/conexion.php");
-
     $message = '';
-
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
         $stmt = $db->prepare($sql);
@@ -12,19 +9,19 @@
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $stmt->bindParam(':password', $password);
 
-    if ($stmt->execute()) {
-        $message = 'Successfully created new user';
+        if ($stmt->execute()) {
+            $message = 'Successfully created new user';
 
-        $records = $db->prepare('SELECT id_user, username, password FROM users WHERE username = :username');
-        $records->bindParam(':username', $_POST['username']);
-        $records->execute();
-        $results = $records->fetch(PDO::FETCH_ASSOC);
+            $records = $db->prepare('SELECT id_user, username, password FROM users WHERE username = :username');
+            $records->bindParam(':username', $_POST['username']);
+            $records->execute();
+            $results = $records->fetch(PDO::FETCH_ASSOC);
 
-        $_SESSION['user_id'] = $results['id_user'];
-        header('Location: /~grupo70/index.php');
-    } else {
-        $message = 'Sorry there must have been an issue creating your account';
-    }
+            $_SESSION['user_id'] = $results['id_user'];
+            header('Location: /~grupo70/index.php');
+        } else {
+            $message = 'Sorry there must have been an issue creating your account';
+        }
     }
 ?>
 
