@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require("../config/conexion.php");
+    require("../config/conexion2.php");
     $message = '';
     if (!empty($_POST['pasaporte']) && !empty($_POST['password'])) {
         $sql = "INSERT INTO users (pasaporte, password, nombre, edad, sexo, nacionalidad) 

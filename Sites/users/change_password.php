@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require("../config/conexion.php");
+    require("../config/conexion2.php");
 
     if (!empty($_POST['password']) && !empty($_POST['new_password'])) {
 

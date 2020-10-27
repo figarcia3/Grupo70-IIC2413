@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require("../config/conexion.php");
+    require("../config/conexion2.php");
 
     if (!empty($_POST['pasaporte']) && !empty($_POST['password'])) {
         $records = $db->prepare('SELECT id_user, pasaporte, password FROM users WHERE pasaporte = :pasaporte');

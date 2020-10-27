@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  require("config/conexion.php");
+  require("config/conexion2.php");
   
   $user = null;
 
@@ -36,5 +36,7 @@
             <a href="users/login.php">Login</a> or
             <a href="users/signup.php">SignUp</a>
         <?php endif; ?>
+        <a href="main.php">Informacion</a>
+
 </body>
 </html>
