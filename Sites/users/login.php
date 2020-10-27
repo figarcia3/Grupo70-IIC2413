@@ -3,15 +3,15 @@
     session_start();
     require("../config/conexion.php");
 
-    if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        $records = $db->prepare('SELECT id_user, username, password FROM users WHERE username = :username');
-        $records->bindParam(':username', $_POST['username']);
+    if (!empty($_POST['pasaporte']) && !empty($_POST['password'])) {
+        $records = $db->prepare('SELECT id_user, pasaporte, password FROM users WHERE pasaporte = :pasaporte');
+        $records->bindParam(':pasaporte', $_POST['pasaporte']);
         $records->execute();
         $results = $records->fetch(PDO::FETCH_ASSOC);
     
         $message = '';
     
-        if (password_verify($_POST['password'], $results['password'])) {
+        if ($_POST['password'] == $results['password']) {
           $_SESSION['user_id'] = $results['id_user'];
           header("Location: /~grupo70/index.php");
         } else {
@@ -32,7 +32,7 @@
         <div>
             <h2> Login Here </h2>
             <form action="login.php" method="POST">
-                <input name="username" type="text" placeholder="Enter your username">
+                <input name="pasaporte" type="text" placeholder="Enter your pasaporte">
                 <input name="password" type="password" placeholder="Enter your Password">
                 <input type="submit" value="Submit">
             </form>

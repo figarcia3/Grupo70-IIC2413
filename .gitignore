@@ -7,3 +7,8 @@
 .bash_history
 .psql_history
 .vscode-server
+.dotnet/
+.local/
+.vsliveshare/
+.gnupg
+.wget-hsts
