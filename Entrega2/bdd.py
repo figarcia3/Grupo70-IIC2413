@@ -78,6 +78,10 @@ df_pertenece_a.rename(columns={'id_buque':'bid'}, inplace=True)
 df_join = pd.merge(df_itinerarios, df_puertos, on='nombre_puerto', how='right')
 df_itinerarios = df_join[['id_buque','pid', 'fecha_atraque', 'fecha_salida']]
 df_itinerarios.rename(columns={'id_buque':'bid'}, inplace=True)
+df_prox_itinerarios = df_itinerarios[df_itinerarios['fecha_salida'].isna()]
+df_prox_itinerarios = df_prox_itinerarios[["bid","pid","fecha_atraque"]]
+df_atraque = df_itinerarios[df_itinerarios['fecha_salida'].notna()]
+
 
 df_paises.to_csv('Tablas/paises.csv', index=False)
 df_navieras.to_csv('Tablas/navieras.csv', index=False)
@@ -87,7 +91,9 @@ df_buques_father.to_csv('Tablas/buques_father.csv', index=False)
 df_buques_pesqueros.to_csv('Tablas/buques_pesqueros.csv', index=False)
 df_buques_cargueros.to_csv('Tablas/buques_cargueros.csv', index=False)
 df_buques_petroleros.to_csv('Tablas/buques_petroleros.csv', index=False)
+df_prox_itinerarios.to_csv('Tablas/prox_itinerarios.csv', index=False)
+df_atraque.to_csv('Tablas/atraque.csv', index=False)
+
 df_trabaja_en.to_csv('Tablas/trabaja_en.csv', index=False)
 df_capitan_en.to_csv('Tablas/capitan_en.csv', index=False)
 df_pertenece_a.to_csv('Tablas/pertenece_a.csv', index=False)
-df_itinerarios.to_csv('Tablas/itinerarios.csv', index=False)
