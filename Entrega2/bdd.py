@@ -5,17 +5,6 @@ df_buques      = pd.read_csv('buques.csv')
 df_itinerarios = pd.read_csv('itinerarios.csv')
 df_personal    = pd.read_csv('personal_buque.csv')
 
-#Tabla de paises - Entidad.
-df_paises_buques = df_buques[['pais']]
-df_paises_navieras = df_buques[['pais_naviera']].rename(columns={'pais_naviera':'pais'}, inplace=True)
-
-df_paises = pd.concat([df_paises_buques, df_paises_navieras])
-df_paises = df_paises.drop_duplicates()
-df_paises = df_paises.reset_index()
-df_paises.insert(0, 'paid', range(0, len(df_paises)))
-df_paises = df_paises.drop(columns='index')
-
-
 #Tabla de navieras - Entidad.df_paises = df_paises.to_frame()
 df_navieras = df_buques[['nombre_naviera','pais_naviera','descripcion_naviera']]
 df_navieras = df_navieras.drop_duplicates()
@@ -82,8 +71,6 @@ df_prox_itinerarios = df_itinerarios[df_itinerarios['fecha_salida'].isna()]
 df_prox_itinerarios = df_prox_itinerarios[["bid","pid","fecha_atraque"]]
 df_atraque = df_itinerarios[df_itinerarios['fecha_salida'].notna()]
 
-
-df_paises.to_csv('Tablas/paises.csv', index=False)
 df_navieras.to_csv('Tablas/navieras.csv', index=False)
 df_puertos.to_csv('Tablas/puertos.csv', index=False)
 df_personas.to_csv('Tablas/personas.csv', index=False)
