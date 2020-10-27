@@ -1,0 +1,21 @@
+CREATE OR REPLACE FUNCTION busqueda_personas(nombre_persona VARCHAR)
+RETURNS TABLE (Nombre VARCHAR, Nombre_buque VARCHAR, fecha_atraque TIMESTAMP,
+fecha_salida TIMESTAMP, nombre_puerto VARCHAR) AS 
+$$
+BEGIN
+RETURN QUERY 
+SELECT temp.nombre, temp.nombre_buque, temp2.fecha_atraque, temp2.fecha_salida
+FROM
+(SELECT personas.nombre, buques.nombre as nombre_buque, buques.bid
+FROM personas, trabaja_en, buques
+WHERE personas.pid = trabaja_en.pid and
+trabaja_en.bid = buques.bid and
+personas.nombre ilike $1) AS temp,
+((SELECT * FROM atraques)
+UNION ALL
+(SELECT bid, pid, fecha_atraque, fecha_atraque as 
+fecha_salida FROM prox_itinerarios)) AS temp2
+WHERE temp2.bid = temp.bid
+ORDER BY temp.nombre, temp2.fecha_atraque;
+END;
+$$ language plpgsql;

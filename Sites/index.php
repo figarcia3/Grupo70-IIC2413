@@ -31,32 +31,38 @@
                 Change Password
             </a>
 
-            <?php if($user[':id_inst'] != -1): ?>
+            <?php $iid = $user['id_inst'] ?>
+            <?php if($idd != -1): ?>
               <br> Welcome Boss
               <?php
                   require("config/conexion.php");
                 
                   $records = $db->prepare('SELECT p.nombre 
                                            FROM puertos AS p, instalacion AS i 
-                                          WHERE i.iid = :id_user AND i.pid_puerto=p.pid');
-                  $records->bindParam(':id_user', $user['id_inst']);
+                                          WHERE (i.iid=:id_user AND i.pid_puerto=p.pid)');
+                  $records->bindParam(':id_user', $iid);
                   $records->execute();
                   $puerto = $records->fetch(PDO::FETCH_ASSOC);
               ?>
-              <br> Nombre puerto: <?php echo $puerto ?>
+              <br> Nombre puerto: <?= $puerto['nombre'] ?>
 
             <?php endif; ?>
-
-            <?php if($user[':id_buque'] != -1): ?>
+              
+            <?php $bid = $user['id_buque'] ?>
+            <?php if($bid != -1): ?>
               <br> Welcome Capitan
               <?php
                   require("config/conexion2.php");
                 
                   $records = $db->prepare('SELECT nombre, patente FROM buques WHERE bid = :id_user');
-                  $records->bindParam(':id_user', $user['id_buque']);
+                  $records->bindParam(':id_user', $bid);
                   $records->execute();
                   $buque = $records->fetch(PDO::FETCH_ASSOC);
               ?>
+
+              <br> Nombre barco: <?= $buque['nombre']?>
+              <br> Patente barco: <?= $buque['patente']?>
+
 
             <?php endif; ?>
 
@@ -66,7 +72,7 @@
             <a href="users/login.php">Login</a> or
             <a href="users/signup.php">SignUp</a>
         <?php endif; ?>
-        <br> <a href="main.php">Informacion</a>
+        <br> <a href="main.php">Navegacion</a>
 
         <?php //require("mergeusers.php")?>
 </body>

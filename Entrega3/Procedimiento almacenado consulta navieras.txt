@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION consulta_navieras(nombre_puerto VARCHAR)
+RETURNS TABLE (Patente VARCHAR, Nombre VARCHAR, Tipo VARCHAR) AS 
+$$
+BEGIN
+RETURN QUERY 
+SELECT * FROM
+((SELECT 
+buques.patente, buques.nombre, 'Carguero'::VARCHAR as tipo
+FROM buques, navieras, pertenece_a
+WHERE
+navieras.nombre_naviera= $1 AND
+buques.bid = pertenece_a.bid AND
+navieras.nid = pertenece_a.nid AND 
+buques.bid IN (SELECT bid FROM buques_cargueros))
+UNION ALL
+(SELECT 
+buques.patente, buques.nombre, 'Pesquero'::VARCHAR as tipo
+FROM buques, navieras, pertenece_a
+WHERE
+navieras.nombre_naviera = $1 AND
+buques.bid = pertenece_a.bid AND
+navieras.nid = pertenece_a.nid AND 
+buques.bid IN (SELECT bid FROM buques_pesqueros))
+UNION ALL
+(SELECT 
+buques.patente, buques.nombre, 'Petrolero'::VARCHAR as tipo
+FROM buques, navieras, pertenece_a
+WHERE
+navieras.nombre_naviera = $1 AND
+buques.bid = pertenece_a.bid AND
+navieras.nid = pertenece_a.nid AND 
+buques.bid IN (SELECT bid FROM buques_petroleros))) AS temp
+ORDER BY temp.tipo;
+END;
+$$ language plpgsql;
