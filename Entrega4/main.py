@@ -1,15 +1,69 @@
-from flask import Flask
+from flask import Flask, json, request
+from pymongo import MongoClient
+
+USER    ="grupo70"
+PASS    ="grupo70"
+IP      ="gray.ing.puc.cl"
+DATABASE="grupo70"
+
+URI     = f"mongodb://{USER}:{PASS}@{IP}/{DATABASE}?authSource=admin"
+# La uri 'estándar' es "mongodb://user:password@ip/database"
+
+client   = MongoClient(URI)
+db       = client.get_database()
+mensajes = db.mensajes
+usuarios = db.usuarios
 
 app = Flask(__name__)
 
 @app.route("/")
-
 def home():
     '''
     Pagina de inicio
     '''
     return "<h1>Hello World! Probando<h1>"
 
+@app.route("/text-search")
+def get_text_search():
+
+    data = request.json
+    query = []
+    mensajes.create_index([("message", "text")])
+
+    try:
+        USER_ID = data["userID"]
+    except KeyError:
+        USER_ID = None
+
+    try:
+        for string in data["desired"]:
+            query.append(string)
+    except KeyError:
+        pass
+
+    try:
+        for string in data["required"]:
+            aux = f"\"{string}\""
+            query.append(aux)
+    except KeyError:
+        pass
+
+    try:
+        for string in data["forbidden"]:
+            aux = f"-{string}"
+            query.append(aux)
+    except KeyError:
+        pass
+    
+    query_str = " ".join(query)
+    if USER_ID==None:
+        msg = mensajes.find( { "$text": { "$search" : query_str }}, {"score": {"$meta": "textScore"}, "_id": False})
+    else:
+        msg = mensajes.find( { "$text": { "$search" : query_str }, "sender" : USER_ID }, {"score": {"$meta": "textScore"}, "_id": False})
+    msg.sort([("score", {"$meta": "textScore"})])
+    msg = list(msg)
+
+    return json.jsonify(msg)
+
 if __name__=="__main__":
-    app.run()
     app.run(debug=True)
