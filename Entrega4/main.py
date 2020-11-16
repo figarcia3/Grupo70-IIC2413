@@ -76,5 +76,18 @@ def get_text_search():
 
     return json.jsonify(msg)
 
+
+@app.route("/message/<int:mid>", methods=['DELETE'])
+def delete_msg(mid):
+    '''
+    Elimina el mensaje
+    '''
+    if len(list(mensajes.find({"mid": mid}))) == 0:
+        return json.jsonify({"success": False})
+
+    else:
+        mensajes.remove({"mid": mid})
+        return json.jsonify({"success": True})
+
 if __name__=="__main__":
     app.run(debug=True)
