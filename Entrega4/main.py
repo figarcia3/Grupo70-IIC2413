@@ -26,12 +26,16 @@ def home():
 @app.route("/text-search")
 def get_text_search():
 
-    data = request.json
     query = []
-    mensajes.create_index([("message", "text")])
+    mensajes.create_index([("message", "text")], "default_language"=="none")
 
     try:
-        USER_ID = data["userID"]
+        data = request.json
+    except:
+        data = {}
+
+    try:
+        USER_ID = data["userId"]
     except KeyError:
         USER_ID = None
 
@@ -50,18 +54,25 @@ def get_text_search():
 
     try:
         for string in data["forbidden"]:
-            aux = f"-{string}"
-            query.append(aux)
+            aux_2 = f"-{string}"
+            query.append(aux_2)
     except KeyError:
         pass
-    
-    query_str = " ".join(query)
-    if USER_ID==None:
-        msg = mensajes.find( { "$text": { "$search" : query_str }}, {"score": {"$meta": "textScore"}, "_id": False})
+
+    if len(query)!=0:
+        query_str = " ".join(query)
+        if USER_ID==None:
+            msg = mensajes.find( { "$text": { "$search" : query_str }}, {"score": {"$meta": "textScore"}, "_id": False})
+        else:
+            msg = mensajes.find( { "$text": { "$search" : query_str }, "sender" : USER_ID }, {"score": {"$meta": "textScore"}, "_id": False})
+        msg.sort([("score", {"$meta": "textScore"})])
+        msg = list(msg)
     else:
-        msg = mensajes.find( { "$text": { "$search" : query_str }, "sender" : USER_ID }, {"score": {"$meta": "textScore"}, "_id": False})
-    msg.sort([("score", {"$meta": "textScore"})])
-    msg = list(msg)
+        if USER_ID==None:
+            msg = mensajes.find({}, {"_id": False})
+        else:
+            msg = mensajes.find( {"sender" : USER_ID }, {"_id": False})
+        msg = list(msg)
 
     return json.jsonify(msg)
 
