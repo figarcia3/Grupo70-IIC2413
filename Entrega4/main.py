@@ -53,9 +53,31 @@ def get_text_search():
         pass
 
     try:
-        for string in data["forbidden"]:
-            aux_2 = f"-{string}"
-            query.append(aux_2)
+        if len(query)!=0:
+            for string in data["forbidden"]:
+                aux_2 = f"-{string}"
+                query.append(aux_2)
+        else:
+            for string in data["forbidden"]:
+                aux_2 = f"{string}"
+                query.append(aux_2)
+
+            query_str = " ".join(query)
+            set_mid = set()
+            list_to_return = []
+
+            total_msg = mensajes.find( {}, { "_id": False})
+            not_msg   = mensajes.find({"$text": { "$search" : query_str }},{"_id": False})
+
+            for msg in not_msg:
+                set_mid.add(msg["mid"])
+            
+            for msg in total_msg:
+                if msg["mid"] not in set_mid:
+                    list_to_return.append(msg)
+
+            return json.jsonify(list_to_return)
+
     except KeyError:
         pass
 
