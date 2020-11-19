@@ -9,6 +9,9 @@ DATABASE="grupo70"
 URI     = f"mongodb://{USER}:{PASS}@{IP}/{DATABASE}?authSource=admin"
 # La uri 'estándar' es "mongodb://user:password@ip/database"
 
+MESSAGE_KEYS = ['message', 'sender', 'receptant',
+            'lat', 'long', 'date']
+
 client   = MongoClient(URI)
 db       = client.get_database()
 mensajes = db.mensajes
@@ -19,13 +22,128 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     '''
-    Pagina de inicio
+    Página de inicio
     '''
-    return "<h1>Hello World! Probando<h1>"
+    return "<h1>¡Hola!</h1>"
+
+#### METODOS GET BASICO #####
+@app.route("/messages")
+def get_messages():
+    '''
+    Entrega todos los mensajes
+    '''
+    id1 = request.args.get("id1", False)
+    id2 = request.args.get("id2", False)
+
+    if id1 != False and id2 != False:
+        user1 = list(db.usuarios.find({"uid":int(id1)}, {"_id": 0}))
+        user2 = list(db.usuarios.find({"uid":int(id2)}, {"_id": 0}))
+    
+        if user1 == [] or user2 == []:
+            return json.jsonify({"error": "ID user no existe"}) 
+        else:
+            search = {
+                "$or":
+                [
+                    {"sender":int(id1), "receptant":int(id2)},
+                    {"sender":int(id2), "receptant":int(id1)}
+                ]
+            }
+            messages = list(db.mensajes.find(search,{"_id":0}).sort("date"))
+            return json.jsonify({"error": "No hay mensajes"})  if messages == [] else json.jsonify(messages) 
+
+    else:
+        messages = list(db.mensajes.find({}, {"_id": 0}))
+        return json.jsonify(messages)
+
+@app.route("/messages/<int:mid>")
+def get_messages_id(mid):
+    '''
+    Entrega la informacion del mensaje con ese mid
+    '''
+    messages = list(db.mensajes.find({"mid":mid}, {"_id": 0}))
+    if messages == []:
+        return json.jsonify({"error": "ID mensaje no existe"}) 
+    else :
+        return json.jsonify(messages)
+
+
+@app.route("/users")
+def get_users():
+    '''
+    Obtiene todos los usuarios
+    '''
+    users = list(db.usuarios.find({}, {"_id": 0}))
+
+    return json.jsonify(users)
+
+
+@app.route("/users/<int:uid>")
+def get_users_id(uid):
+    '''
+    Obtiene todos los usuarios
+    '''
+    user = list(db.usuarios.find({"uid":uid}, {"_id": 0}))
+    message_user = list(db.mensajes.find({"sender":uid}, {"_id": 0}))
+
+    if user == []:
+        return json.jsonify({"error": "ID user no existe"}) 
+    else:
+        y = json.loads('{}')
+        y['user'] = user
+        y['sent_message'] = message_user
+        return json.jsonify(y)
+
+
+
+@app.route("/messages", methods=["POST"])
+def send_message():
+    '''
+    Agrega un mensaje (si es válido)
+    '''
+    
+    status = 0
+    falta = []
+    data = dict()
+    for key in MESSAGE_KEYS:
+        if key not in request.json:
+            status = 1
+            falta.append(key)
+        else:
+            data[key] = request.json[key]
+    if set(request.json.keys()) != set(MESSAGE_KEYS):
+        status = 2 if status == 1 else 3
+    if status != 0:
+        error = {"succes": False}
+        if status == 1:
+            error["key(s) faltantes(s)"] = falta
+        elif status == 2:
+            error["key(s) faltantes(s)"] = falta
+            error["details"] = "Hay keys extra"
+        else:
+            error["details"] = "Hay keys extra"
+        return json.jsonify(error)
+    else:
+        if not str(data["lat"]).lstrip('-').replace('.','',1).isdigit():
+            return json.jsonify({"succes": False, "details": "formato incorrecto de 'lat'"})
+        elif not str(data["long"]).lstrip('-').replace('.','',1).isdigit():
+            return json.jsonify({"succes": False, "details": "formato incorrecto de 'long'"})
+        elif list(db.usuarios.find({"uid":data["sender"]}, {"_id": 0})) == [] or list(db.usuarios.find({"uid":data["receptant"]}, {"_id": 0})) == []:
+            return json.jsonify({"succes": False, "details": "uid no valida"})
+        else:
+            id = list(db.mensajes.find({}).sort("mid",-1).limit(1))[0]["mid"] + 1
+            data["mid"] = id
+            result = db.mensajes.insert_one(data)
+            return json.jsonify({"succes": True, "message_id": id})
+
 
 @app.route("/text-search")
 def get_text_search():
+    """
+    
+    Busca un mensaje
 
+    """
     query = []
     mensajes.create_index([("message", "text")], "default_language"=="none")
 
