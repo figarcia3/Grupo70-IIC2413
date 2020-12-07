@@ -85,6 +85,7 @@ def get_users_id(uid):
     '''
     user = list(db.usuarios.find({"uid":uid}, {"_id": 0}))
     message_user = list(db.mensajes.find({"sender":uid}, {"_id": 0}))
+    message2_user = list(db.mensajes.find({"receptant":uid}, {"_id": 0}))
 
     if user == []:
         return json.jsonify({"error": "ID user no existe"}) 
@@ -92,6 +93,8 @@ def get_users_id(uid):
         y = json.loads('{}')
         y['user'] = user
         y['sent_message'] = message_user
+        y['inbox_message'] = message2_user
+        y = [y]
         return json.jsonify(y)
 
 

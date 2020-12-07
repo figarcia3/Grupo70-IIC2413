@@ -1,12 +1,14 @@
-<?php include('templates/header.html');   ?>
+<?php include('template/header.html');   ?>
 
 
 <body>
 <!-- Menu -->
 <div class="topnav">
-  <a href="index.php">INICIO</a>
+  <a href="users/info_user.php">PERFIL</a>
   <a href="MainNavieras.php">NAVIERAS</a>
   <a href="otrasconsultas.php">PERSONAS</a>
+  <a href="message/inbox.php">MENSAJES</a>
+
 </div>
 
 <!-- Header -->

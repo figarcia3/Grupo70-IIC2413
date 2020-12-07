@@ -14,7 +14,6 @@
         $stmt->bindParam(':nacionalidad', $_POST['nacionalidad']);
 
         if ($stmt->execute()) {
-            $message = 'Successfully created new user';
 
             $records = $db->prepare('SELECT id_user, pasaporte, password FROM users WHERE pasaporte = :pasaporte');
             $records->bindParam(':pasaporte', $_POST['pasaporte']);
@@ -22,32 +21,9 @@
             $results = $records->fetch(PDO::FETCH_ASSOC);
 
             $_SESSION['user_id'] = $results['id_user'];
-            header('Location: /~grupo70/index.php');
+            header('Location: /~grupo121/users/info_user.php');
         } else {
-            $message = 'Sorry there must have been an issue creating your account';
+            header('Location: /~grupo121/index2.php');   
         }
     }
 ?>
-
-<?php include('../templates/header.html');   ?>
-    <body>
-        <?php if(!empty($message)): ?>
-            <p> <?= $message ?></p>
-        <?php endif; ?>
-
-        <h1>SignUp</h1>
-        <span>or <a href="login.php">Login</a></span>
-        <div>
-            <h2> Sign un </h2>
-            <form action="signup.php" method="POST">
-                <input name="pasaporte" type="text" placeholder="Enter your pasaporte">
-                <input name="password" type="password" placeholder="Enter your Password">
-                <input name="nombre" type="text" placeholder="Enter your nombre">
-                <input name="edad" type="int">
-                <input name="sexo" type="text" placeholder="Enter your sexo">
-                <input name="nacionalidad" type="text" placeholder="Enter your nacionalidad">
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </body>
-</html>

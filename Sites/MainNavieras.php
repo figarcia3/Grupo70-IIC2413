@@ -1,13 +1,15 @@
-<?php include('templates/header.html');   ?>
+<?php include('template/header.html');   ?>
 
 
 <body>
 
 <!-- Header-->
 <div class="topnav">
-  <a href="index.php">INICIO</a>
+  <a href="users/info_user.php">PERFIL</a>
   <a href="main.php">PUERTOS</a>
   <a href="otrasconsultas.php">PERSONAS</a>
+  <a href="message/inbox.php">MENSAJES</a>
+
 </div>
 
 <!-- Header -->
@@ -78,6 +80,12 @@
  	
   </form>
 </div>
+
+
+
+
+
+
 
 
 
