@@ -31,7 +31,7 @@
 
 ?>
 
-<?php include('../template/header_users.html');   ?>
+<?php include('../templates/header_users.html');   ?>
 <body>
 <!-- Menu -->
 <div class="topnav">
