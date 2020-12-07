@@ -16,7 +16,7 @@
 
 
 
-<?php include('../template/header_message.html');   ?>
+<?php include('../templates/header_message.html');   ?>
 
 
 <body>

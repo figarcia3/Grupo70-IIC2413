@@ -1,4 +1,4 @@
-<?php include('template/header.html');   ?>
+<?php include('templates/header.html');   ?>
 
 
 <body>
