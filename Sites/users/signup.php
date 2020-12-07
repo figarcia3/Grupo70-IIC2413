@@ -21,9 +21,9 @@
             $results = $records->fetch(PDO::FETCH_ASSOC);
 
             $_SESSION['user_id'] = $results['id_user'];
-            header('Location: /~grupo121/users/info_user.php');
+            header('Location: /~grupo70/users/info_user.php');
         } else {
-            header('Location: /~grupo121/index2.php');   
+            header('Location: /~grupo70/index.php');   
         }
     }
 ?>

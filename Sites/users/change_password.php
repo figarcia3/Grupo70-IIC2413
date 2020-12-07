@@ -23,7 +23,7 @@
     
         if ($_POST['password'] == $results['password']) {
             $records->execute();
-            header("Location: /~grupo121/users/info_user.php");
+            header("Location: /~grupo70/users/info_user.php");
         } else {
           $message = 'Sorry, those credentials do not match';
         }

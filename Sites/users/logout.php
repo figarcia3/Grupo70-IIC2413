@@ -5,5 +5,5 @@
 
   session_destroy();
 
-  header('Location: /~grupo121/index.php');
+  header('Location: /~grupo70/index.php');
 ?>
