@@ -23,8 +23,10 @@
 <!-- Menu -->
 <div class="topnav">
   <a href="../MainNavieras.php">NAVIERAS</a>
+  <a href="../main.php">PUERTOS</a>
   <a href="../otrasconsultas.php">PERSONAS</a>
   <a href="../message/inbox.php">MENSAJES</a>
+  <a href="../pdi/pdi_search_map.php">PDI</a>
 </div>
 
 

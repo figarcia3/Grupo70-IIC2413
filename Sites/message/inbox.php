@@ -22,16 +22,16 @@
 <body>
 <!-- Menu -->
 <div class="topnav">
- <a href="../users/info_user.php">PERFIL</a>
+  <a href="../users/info_user.php">PERFIL</a>
   <a href="../MainNavieras.php">NAVIERAS</a>
   <a href="../otrasconsultas.php">PERSONAS</a>
 </div>
 <br></br>
 
-<div class="tab" method="post" action= "change_password.php">
-	<a style = "background-color: #ccc;"   href="inbox.php">INBOX</a>
+<div class="tab">
+	  <a style = "background-color: #ccc;"   href="inbox.php">INBOX</a>
     <a href="sent.php">SENT</a>
-  	<a href="compose.php">COMPOSE</a>
+  	<a href="new_message.php">NEW MESSAGE</a>
   	<a href="search.php">SEARCH</a>
  
 

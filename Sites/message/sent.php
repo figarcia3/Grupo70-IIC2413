@@ -27,11 +27,13 @@
 </div>
 <br></br>
 
-<div class="tab" method="post" action= "change_password.php">
-	<a href="inbox.php">INBOX</a>
+<div class="tab">
+	  <a href="inbox.php">INBOX</a>
     <a style = "background-color: #ccc;" href="sent.php">SENT</a>
-  	<a href="compose.php">COMPOSE</a>
+  	<a href="new_message.php">NEW MESSAGE</a>
   	<a href="search.php">SEARCH</a>
+ 
+
 </div>
 
 

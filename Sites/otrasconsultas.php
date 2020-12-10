@@ -11,6 +11,7 @@
   <a href="main.php">PUERTOS</a>
   <a href="MainNavieras.php">NAVIERAS</a>
   <a href="message/inbox.php">MENSAJES</a>
+  <a href="pdi/pdi_search_map.php">PDI</a>
 
 </div>
 
