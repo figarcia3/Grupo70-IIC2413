@@ -2,13 +2,7 @@
 
 
 <body>
-<!-- Menu -->
-<div class="topnav">
-  <a href="index.php">INICIO</a>
-  <a href="MainNavieras.php">NAVIERAS</a>
-  <a href="otrasconsultas.php">PERSONAS</a>
-  <a href="pdi/pdi_search_map.php">PDI</a>
-</div>
+
 
 <!-- Header -->
 <div class="header">
