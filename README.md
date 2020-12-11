@@ -17,7 +17,8 @@ LINK API : https://proyectobdd-2020.herokuapp.com/
 - En el caso de que haya más de un dato con una misma ubicación solo sé podra visualizar una marcación en ese lugar.
 
 
-La base de datos de mongo está modificada ya que se probaron las diferentes consultas.
 
+La base de datos de mongo está modificada ya que se probaron las diferentes consultas.
+La información del archivo "coordenadas_puertos.csv" fue guardada en la base de datos de psql de la entrega 3.
 
 
