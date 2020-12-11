@@ -21,11 +21,12 @@
 <body>
 <!-- Menu -->
 <div class="topnav">
-  <a href="../users/info_user.php">PERFIL</a>
-  <a href="main.php">PUERTOS</a>
+ <a href="../users/info_user.php">PERFIL</a>
+ <a href="../main.php">PUERTOS</a>
   <a href="../MainNavieras.php">NAVIERAS</a>
   <a href="../otrasconsultas.php">PERSONAS</a>
   <a href="../pdi/pdi_search_map.php">PDI</a>
+
 </div>
 <br></br>
 
@@ -54,6 +55,7 @@ if(!empty($sent)) {
     ?>
 <div class="container darker">
   <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="Avatar" style="width:100%;">
+  <a> Para: <?php echo $message['receptant'] ?>  </a>
   <p> <?php echo $message['message'] ?> </p>
   <span class="time-right"> Fecha : <?php echo $message['date']?>  </span>
 </div>

@@ -55,11 +55,12 @@
 <body>
 <!-- Menu -->
 <div class="topnav">
-  <a href="../users/info_user.php">PERFIL</a>
-  <a href="main.php">PUERTOS</a>
+ <a href="../users/info_user.php">PERFIL</a>
+ <a href="../main.php">PUERTOS</a>
   <a href="../MainNavieras.php">NAVIERAS</a>
   <a href="../otrasconsultas.php">PERSONAS</a>
   <a href="../pdi/pdi_search_map.php">PDI</a>
+
 </div>
 <br></br>
 

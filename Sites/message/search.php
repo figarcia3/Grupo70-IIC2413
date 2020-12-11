@@ -24,7 +24,6 @@
         'desired' => $desired,
         'required' => $required,
         'forbidden' => $forbidden,
-        'userId' => intval($userId)
     );
 
 
@@ -48,11 +47,12 @@
 <body>
 <!-- Menu -->
 <div class="topnav">
-  <a href="../users/info_user.php">PERFIL</a>
-  <a href="main.php">PUERTOS</a>
+ <a href="../users/info_user.php">PERFIL</a>
+ <a href="../main.php">PUERTOS</a>
   <a href="../MainNavieras.php">NAVIERAS</a>
   <a href="../otrasconsultas.php">PERSONAS</a>
   <a href="../pdi/pdi_search_map.php">PDI</a>
+
 </div>
 <br></br>
 
@@ -78,7 +78,11 @@
 
 <?php 
 if(!empty($response)) {
-  foreach ($response as $value){ ?>
+  foreach ($response as $value){ 
+     ?>
+    
+    <?php if ($value['receptant'] == $userId or $value['sender'] == $userId) { ?>
+
 
 <div class="container">
   <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="Avatar" style="width:100%;">
@@ -86,7 +90,7 @@ if(!empty($response)) {
   <p> <?php echo $value['message'] ?> </p>
   <span class="time-right"> Fecha : <?php echo $value['date']?>  </span>
 </div>
-<?php } }
+<?php }}  }
 ?>
 </div>
 
